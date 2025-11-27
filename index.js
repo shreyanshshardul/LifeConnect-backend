@@ -187,3 +187,18 @@ app.get("/cards/recipient" , async(req,res)=>{
     res.status(500).json({ success: false, message: "Error fetching donors" });
   }
 })
+
+app.get("/profile", async (req, res) => {
+  try {
+    const token = req.headers.token;
+
+    if (!token) return res.json({ status: false, message: "No token" });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    res.json({ status: true, user: decoded });
+  } catch (err) {
+    res.json({ status: false, message: "Invalid token" });
+  }
+});
+
