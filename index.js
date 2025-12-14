@@ -12,10 +12,8 @@ const Recipient = require("./Models/Recipient");
 // Middleware to parse JSON
 app.use(express.json());
 const cors = require("cors");
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true,
-}));
+app.use(cors());
+
 
 
 const PORT = process.env.PORT || 8080;
